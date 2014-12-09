@@ -1,0 +1,95 @@
+<script id="placeTypeSelectRenderTpl" type="text/template">
+<div class="item item-input item-select">
+<div class="input-label">
+	Place Types:
+</div>
+<select id="placeSelectParent">
+	{{#places}}
+	<option value="{{type}}">{{label}}</option>
+	{{/places}}
+</select>
+</div>
+<!--
+<div class="item item-input item-select">
+<div class="input-label">
+	Search By:
+</div>
+<select id="searchBySelectParent">
+	<option value="PROMINENCE">PROMINENCE</option>
+	<option value="DISTANCE">DISTANCE</option>
+</select>
+</div>
+-->
+</script>
+
+<script id="placeDetailModalRenderTpl" type="text/template">
+	
+<div class="list card">
+
+  <div class="item item-avatar">
+    <img src="{{icon}}">
+    <h2>{{name}}</h2>
+    <p>{{{adr_address}}}</p>
+  </div>
+
+	{{#photo}}
+	<div class="item item-body">
+    <img class="full-image" src="{{.}}">
+	</div>
+	{{/photo}}
+	
+	{{#international_phone_number}}
+	<a href="tel:{{international_phone_number}}" class="button button-block button-energized icon-left"><i class="icon ion-ios7-telephone"></i> {{international_phone_number}}</a>
+	{{/international_phone_number}}
+	
+	<div class="item item-body">
+		<h2>Opening Hours {{#open_now}}<span class="badge badge-assertive">OPEN NOW</span>{{/open_now}}</h2>
+		{{#opening_hours}}
+		<div class="item">
+			<ul>
+				{{#periods}}
+					<li>{{dayOfWeekFromInt}}: {{openLTFormat}} - {{closeLTFormat}}</li>
+				{{/periods}}
+			</ul>
+		</div>
+		{{/opening_hours}}
+		{{^opening_hours}}<p>No information available.</p>{{/opening_hours}}
+	</div>
+			
+	{{#url}}
+	<a href="{{.}}" class="button button-block button-energized icon-left"><i class="icon ion-social-googleplus"></i> Visit Website</a>
+	{{/url}}
+	
+	{{#website}}
+	<a href="{{.}}" class="button button-block button-energized icon-left"><i class="icon ion-ios7-world"></i> {{.}}</a>
+	{{/website}}
+	
+	<div class="item item-body">
+		<h2>Reviews{{#user_ratings_total}} ({{user_ratings_total}}){{/user_ratings_total}}</h2>
+		{{#reviews}}
+		<div class="item item-text-wrap">
+			<p>{{author_name}} - <span class="subdued">{{human_time}}</span></p>
+			<p>&ldquo;{{{text}}}&rdquo;</p>
+			<p>Overall rating: {{rating}}/5</p>
+			<p>Aspects:</p>
+			<ul>
+				{{#aspects}}
+					<li>{{rating}}/3 {{type}}</li>
+				{{/aspects}}
+			</ul>
+		</div>
+		<br /><br />
+		{{/reviews}}
+		{{^reviews}}<p>No reviews available.</p>{{/reviews}}
+	</div>
+		
+	<div class="item">
+    <p class="subdued ion-ios7-pricetag icon-left">
+    {{#types}}
+		 <a href="#" class="subdued">{{.}}</a>
+	{{/types}}
+    </p>
+    </div>
+
+</div>
+</script>
